@@ -9,12 +9,12 @@ function addtoDOM(response)
   var ul = document.querySelector('ul');
   response.forEach(element => {
     var li = document.createElement('li');
-    li.appendChild(document.createTextNode(element));
+    li.innerText = element;
     ul.appendChild(li);
   });
 }
 
-  let url = 'https://pokeapi.co/api/v2/pokemon';
+  let url = 'https://pokeapi.co/api/v2/pokemon?limit=10';
   fetch(url).then(addtoDOM);
 
   //const ul = document.querySelector("ul");
