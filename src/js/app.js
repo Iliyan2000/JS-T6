@@ -1,21 +1,21 @@
 import { list } from "postcss";
 import "../scss/app.scss";
 
-window.addEventListener("DOMContentLoaded", () => {
-  // This block will be executed once the page is loaded and ready
+window.addEventListener('DOMContentLoaded', addToDOM);
 
-function addtoDOM(response)
-{
-  var ul = document.querySelector('ul');
-  response.forEach(element => {
-    var li = document.createElement('li');
-    li.innerText = element;
-    ul.appendChild(li);
-  });
+async function addToDOM (){
+    let ul = document.querySelector('ul');
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=10';
+
+    let res = await fetch(url);
+    let data = await res.json();
+
+    console.log(data);
+
+    data.results.forEach(a => {
+        let liElement = document.createElement('li');
+        liElement.innerText = a.name;
+        ul.appendChild(liElement);
+    })
+
 }
-
-  let url = 'https://pokeapi.co/api/v2/pokemon?limit=10';
-  fetch(url).then(addtoDOM);
-
-  //const ul = document.querySelector("ul");
-});
